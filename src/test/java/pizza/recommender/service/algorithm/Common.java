@@ -1,4 +1,4 @@
-package com.intland.interview.pizza.service.algorithm;
+package pizza.recommender.service.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;

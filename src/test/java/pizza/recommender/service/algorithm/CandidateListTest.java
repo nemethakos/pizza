@@ -1,4 +1,4 @@
-package com.intland.interview.pizza.service.algorithm;
+package pizza.recommender.service.algorithm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import lombok.extern.log4j.Log4j2;
 import pizza.recommender.entity.Pizza;
-import pizza.recommender.service.algorithm.Candidate;
-import pizza.recommender.service.algorithm.CandidateList;
 
 @Log4j2
 class CandidateListTest {
