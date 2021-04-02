@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Pizza</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/shards.min.css}" />
+</head>
+<body>
+	<div class="container my-5">
+		<h2 class="mb-5">Enter price for pizza varieties:</h2>
+		<div class="container my-5">
+			<form action="#" th:action="@{/varieties}" th:object="${varietyForm}"
+				method="post">
+				<div class="form-group">
+					<label for="price" class="form-label">Price <span>(HUF)</span>
+					</label> <input type="text" th:field="*{price}" class="form-control"
+						id="price" placeholder="9999">
+					<div class="alert alert-warning"
+						th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+						<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+							class="text-danger">Incorrect price</div>
+					</div>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Get Varieties">
+			</form>
+		</div>
+		<a th:href="@{index}" class="btn btn-success"><i
+			class="fa fa-arrow-circle-o-left"></i>&nbsp;Back to Index</a>
+	</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Pizza</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/static/shards.min.css}" />
+</head>
+<body>
+	<div class="container my-5">
+		<h1>Pizza varieties generator</h1>
+		<table class="table">
+
+			<tbody>
+				<tr>
+					<td><a th:href="@{available}" class="btn btn-success"><i
+							class="fa fa-arrow-circle-o-left"></i>&nbsp;List of Available
+							Pizzas</a></td>
+				</tr>
+				<tr>
+					<td><a th:href="@{select}" class="btn btn-success"><i
+							class="fa fa-arrow-circle-o-left"></i>&nbsp;Get varieties of
+							pizzas based on maximum price</a></td>
+				</tr>
+				<tr>
+					<td>
+						<div>
+							<h5>REST interface</h5>
+							<ul>
+								<li>Get List of Pizzas: <a href="/pizzas"
+									class="badge badge-primary">GET /pizzas</a>
+								</li>
+								<li>Update list of pizzas <span
+									class="badge badge-secondary">PUT /pizzas</span>
+									<div class="card">
+										<div class="card-body">
+											<div>cURL example:</div>
+											<pre>
+curl --location --request PUT 'localhost:8080/pizzas' \
+--header 'Content-Type: application/json' \
+--data-raw '[    
+    {
+        "name": "Szuprém - nagy méret",
+        "price": 4490 
+    },
+    {
+        "name": "Texas - nagy méret",
+        "price": 4490 
+    },
+    {
+        "name": "Margarita - nagy méret",
+        "price": 3790 
+    }
+]'
+				</pre>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+</body>
+</html>
