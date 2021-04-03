@@ -12,7 +12,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Encapsulates the form data for amount of money spent on Pizza
+ * Encapsulates the form data for amount of money spent on Pizza.
  */
 @NoArgsConstructor
 @AllArgsConstructor

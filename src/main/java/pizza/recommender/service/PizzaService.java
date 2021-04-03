@@ -39,9 +39,9 @@ public class PizzaService {
 	public CandidateList getOffers(Integer price) {
 
 		Backtracking b = new Backtracking(getListOfAllPizzas(), price);
-		
+
 		CandidateList result = b.getCombinations();
-		
+
 		log.info("Offers: {}", result);
 
 		return result;

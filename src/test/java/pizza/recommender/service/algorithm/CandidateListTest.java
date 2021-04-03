@@ -35,7 +35,7 @@ class CandidateListTest {
 
 	@Test
 	void testAdd() {
-		for (int i=1; i<=NUM_PIZZAS; i++) {
+		for (int i = 1; i <= NUM_PIZZAS; i++) {
 			candidates.add(getCandidate(i));
 			log.info("\r\n\r\nCandidate: {}", candidates);
 		}

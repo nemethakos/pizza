@@ -1,5 +1,6 @@
 package pizza.recommender.service.algorithm;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,16 +15,29 @@ public class CandidateList {
 	private List<Candidate> candidates;
 	private int maximumNumberOfCandidates;
 	private int targetPrice;
-	private int minPriceDifference;
 	private int maxPriceDifference;
 	private int casesExamined;
+	private long backtrackTimeNano;
 
+	/**
+	 * @param size        the maximum size of the result list
+	 * @param targetPrice the amount of money for the results
+	 */
 	public CandidateList(int size, int targetPrice) {
 		this.candidates = new ArrayList<>(size + 1);
 		this.maximumNumberOfCandidates = size;
 		this.targetPrice = targetPrice;
 		this.maxPriceDifference = Integer.MAX_VALUE;
 		this.casesExamined = 0;
+		this.backtrackTimeNano = 0;
+	}
+
+	public Duration getBacktrackDuration() {
+		return Duration.ofNanos(backtrackTimeNano);
+	}
+
+	public boolean isValid() {
+		return candidates.size() > 0;
 	}
 
 	public void setCasesExamined(int casesExamined) {
@@ -36,10 +50,12 @@ public class CandidateList {
 		return result;
 	}
 
-	public boolean isValid() {
-		return candidates.size() > 0;
-	}
-
+	/**
+	 * Adds the candidate for the result list. If the candidate is better then any
+	 * of the candidates in the list
+	 * 
+	 * @param candidate the {@link Candidate}
+	 */
 	public void add(Candidate candidate) {
 		if (candidate.getPrice() == 0) {
 			return;
@@ -48,13 +64,19 @@ public class CandidateList {
 			throw new RuntimeException(
 					String.format("candidate price: (%d) > Target price: (%d)", candidate.getPrice(), targetPrice));
 		}
-		int priceDifference = targetPrice - candidate.getPrice();
-		if (candidates.size() < maximumNumberOfCandidates || priceDifference <= this.minPriceDifference) {
+		int newPriceDifference = targetPrice - candidate.getPrice();
+		if (candidates.size() < maximumNumberOfCandidates || // the list is not full
+				newPriceDifference == 0 && this.maxPriceDifference != 0 || // the perfect candidate and the list is not
+																			// full of perfect candidates
+				newPriceDifference < this.maxPriceDifference) { // imperfect candidate
+			// find the position for the new candidate
 			int position = Collections.binarySearch(candidates, candidate);
 			if (position < 0) {
+				// not found in the array
 				position = -position - 1;
 			} else {
-				// check if the candidate is not a duplicate
+				// check if the candidate is not a duplicate (binary search does not deal with
+				// multiple instances)
 				if ((candidates.indexOf(candidate)) != -1) {
 					return;
 				}
@@ -66,21 +88,20 @@ public class CandidateList {
 			// calculate max price difference
 			this.maxPriceDifference = 0;
 			for (int i = 0; i < this.candidates.size(); i++) {
-				priceDifference = targetPrice - this.candidates.get(i).getPrice();
-				if (priceDifference > maxPriceDifference) {
-					maxPriceDifference = priceDifference;
+				int currentPriceDifference = targetPrice - this.candidates.get(i).getPrice();
+				if (currentPriceDifference > maxPriceDifference) {
+					maxPriceDifference = currentPriceDifference;
 				}
 			}
 		}
 	}
 
 	public boolean isComplete() {
+		return (maxPriceDifference == 0 && candidates.size() == maximumNumberOfCandidates);
+	}
 
-		int currentSize = Math.min(maximumNumberOfCandidates, this.candidates.size());
-		if (currentSize < maximumNumberOfCandidates || maxPriceDifference != 0) {
-			return false;
-		}
-		return true;
+	public void setBacktrackTimeNano(long backtrackTimeNano) {
+		this.backtrackTimeNano = backtrackTimeNano;
 	}
 
 }

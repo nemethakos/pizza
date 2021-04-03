@@ -26,7 +26,7 @@ import pizza.recommender.service.PizzaService;
 public class PizzaRestController {
 
 	private final PizzaService pizzaService;
-	
+
 	@Getter
 	@AllArgsConstructor
 	@ToString
@@ -37,11 +37,11 @@ public class PizzaRestController {
 		@NotNull(message = "Price is mandatory")
 		@Min(0)
 		private Integer price;
-		
+
 		static Pizza fromPizzaDTO(PizzaDTO pizzaDTO) {
 			return new Pizza(pizzaDTO.name, pizzaDTO.price);
 		}
-		
+
 		static PizzaDTO fromPizza(Pizza pizza) {
 			return new PizzaDTO(pizza.getName(), pizza.getPrice());
 		}
@@ -56,7 +56,7 @@ public class PizzaRestController {
 	void updatePizzaList(@RequestBody @Valid @NotBlank List<PizzaDTO> newPizzaList) {
 		log.info("PUT Pizza list: {}", newPizzaList);
 		List<Pizza> pizzas = new ArrayList<>();
-		for (var pizzaDTO: newPizzaList) {
+		for (var pizzaDTO : newPizzaList) {
 			pizzas.add(PizzaDTO.fromPizzaDTO(pizzaDTO));
 		}
 		pizzaService.updatePizzaList(pizzas);
@@ -67,10 +67,10 @@ public class PizzaRestController {
 	List<PizzaDTO> getAllPizzas() {
 		List<Pizza> listOfAllPizzas = pizzaService.getListOfAllPizzas();
 		List<PizzaDTO> result = new ArrayList<PizzaRestController.PizzaDTO>();
-		for (Pizza pizza: listOfAllPizzas) {
+		for (Pizza pizza : listOfAllPizzas) {
 			result.add(PizzaDTO.fromPizza(pizza));
 		}
 
-		return result ;
+		return result;
 	}
 }

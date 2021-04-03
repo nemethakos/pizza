@@ -22,7 +22,7 @@ class BacktrackingTest {
 
 		this.pizzas = Common.getPizzas(2895, 10, 0);
 		log.info("Pizza list: {}", pizzas);
-		this.backtracking = new Backtracking(pizzas, 2895*10);
+		this.backtracking = new Backtracking(pizzas, 10000);
 
 	}
 
@@ -30,7 +30,7 @@ class BacktrackingTest {
 	void testGetCombinations() {
 
 		var combinations = backtracking.getCombinations();
-		log.info("Combinations: {}, cases: {}", combinations, backtracking.getCaseNumber());
+		log.info("Combinations: {}, cases: {}", combinations, combinations.getCasesExamined());
 
 	}
 

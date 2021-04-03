@@ -1,6 +1,5 @@
 package pizza.recommender.init;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class InitBean implements InitializingBean {
 		pizzaList.add(Pizza.builder().name("Gombás pizza - közepes méret").price(2394).build());
 
 		log.info("Init pizza list: {}", pizzaList);
-		
+
 		pizzaService.updatePizzaList(pizzaList);
 
 	}

@@ -37,7 +37,7 @@ public class Pizza {
 	@NotNull(message = "Price is mandatory")
 	@Min(0)
 	private Integer price;
-	
+
 	public Pizza(String name, int price) {
 		this.name = name;
 		this.price = price;

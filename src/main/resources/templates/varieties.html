@@ -50,8 +50,16 @@
 					</tbody>
 				</table>
 			</div>
-			<span>Cases examined: </span><span
-				th:text="${candidateList.casesExamined}"></span>
+			<small> <span>Cases examined: </span><span
+				th:text="${#numbers.formatInteger(candidateList.casesExamined,3,'POINT')}"></span>
+				<span>( </span> <span
+				th:text="${candidateList.getBacktrackDuration.toSecondsPart()}"></span><span>
+					seconds</span> <span
+				th:text="${candidateList.getBacktrackDuration.toMillisPart()}"></span><span>
+					millis</span> <span
+				th:text="${candidateList.getBacktrackDuration.toNanosPart() - candidateList.getBacktrackDuration.toMillisPart() * 1000000}"></span><span>
+					nanos</span> <span> )</span>
+			</small>
 		</div>
 		<a th:href="@{index}" class="btn btn-success"><i
 			class="fa fa-arrow-circle-o-left"></i>&nbsp;Back to Index</a>

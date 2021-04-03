@@ -12,14 +12,14 @@ import pizza.recommender.entity.Pizza;
 
 @Repository
 public interface PizzaRepository extends CrudRepository<Pizza, Long> {
-	
+
 	@Query("select p from Pizza p order by p.price desc")
 	Stream<Pizza> findAllAsStream();
-	
+
 	@Override
 	@Query("select p from Pizza p order by p.price desc")
 	List<Pizza> findAll();
 
 	Optional<Pizza> findByName(String name);
-	
+
 }
