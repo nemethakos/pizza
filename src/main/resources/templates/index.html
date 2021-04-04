@@ -39,15 +39,15 @@
 							<ul class="list-group">
 								<li class="list-group-item">Get List of Pizzas: <a href="/pizzas"
 									class="badge badge-primary">GET
-										http://localhost:8080/pizzas</a>
+										http://localhost:8080/pizzas</a>(when running on localhost:8080)
 								</li>
 								<li  class="list-group-item">Update list of pizzas <span
 									class="badge badge-secondary">PUT
-										http://localhost:8080/pizzas</span>
+										http://localhost:8080/pizzas</span>(when running on localhost:8080)
 									
 									<div class="card m-4">
 										<div class="card-body">
-											<h6>cURL example (linux):</h6>
+											<h6>cURL example when running on localhost:8080 (linux):</h6>
 											<pre>
 curl --silent --request PUT 'localhost:8080/pizzas' \
 --header 'Content-Type: application/json' \
@@ -71,7 +71,7 @@ curl --silent --request PUT 'localhost:8080/pizzas' \
 <div> </div>
 									<div class="card m-4">
 										<div class="card-body">
-											<h6>cURL example (Windows):</h6>
+											<h6>cURL example when running on localhost:8080 (Windows):</h6>
 											<pre>
 curl --silent --location --request PUT "localhost:8080/pizzas" ^
 --header "Content-Type: application/json" ^

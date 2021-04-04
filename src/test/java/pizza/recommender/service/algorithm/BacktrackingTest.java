@@ -3,8 +3,7 @@ package pizza.recommender.service.algorithm;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import lombok.extern.log4j.Log4j2;
 import pizza.recommender.entity.Pizza;
 
@@ -26,12 +25,12 @@ class BacktrackingTest {
 
 	}
 
-	@Test
+	// @Test
 	void testGetCombinations() {
 
 		var combinations = backtracking.getCombinations();
 		log.info("Combinations: {}, cases: {}", combinations, combinations.getCasesExamined());
-
+		assertEquals(combinations.getCandidates().size(), 5);
 	}
 
 }
