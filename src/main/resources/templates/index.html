@@ -36,35 +36,51 @@
 					<td>
 						<div>
 							<h5>REST interface</h5>
-							<ul>
-								<li>Get List of Pizzas: <a href="/pizzas"
-									class="badge badge-primary">GET /pizzas</a>
+							<ul class="list-group">
+								<li class="list-group-item">Get List of Pizzas: <a href="/pizzas"
+									class="badge badge-primary">GET
+										http://localhost:8080/pizzas</a>
 								</li>
-								<li>Update list of pizzas <span
-									class="badge badge-secondary">PUT /pizzas</span>
-									<div class="card">
+								<li  class="list-group-item">Update list of pizzas <span
+									class="badge badge-secondary">PUT
+										http://localhost:8080/pizzas</span>
+									
+									<div class="card m-4">
 										<div class="card-body">
-											<div>cURL example (linux):</div>
+											<h6>cURL example (linux):</h6>
 											<pre>
-curl --location --request PUT 'localhost:8080/pizzas' \
+curl --silent --request PUT 'localhost:8080/pizzas' \
 --header 'Content-Type: application/json' \
---data-raw '[    
+--data-raw '[
     {
-        "name": "Szuprém - nagy méret",
-        "price": 4490 
+        "name": "Szupr\u00E9m - nagy m\u00E9ret",
+        "price": 4490
     },
     {
-        "name": "Texas - nagy méret",
-        "price": 4490 
+        "name": "Texas - nagy m\u00E9ret",
+        "price": 4490
     },
     {
-        "name": "Margarita - nagy méret",
-        "price": 3790 
+        "name": "Margarita - nagy m\u00E9ret",
+        "price": 3790
     }
 ]'
 				</pre>
 										</div>
 									</div>
+<div> </div>
+									<div class="card m-4">
+										<div class="card-body">
+											<h6>cURL example (Windows):</h6>
+											<pre>
+curl --silent --location --request PUT "localhost:8080/pizzas" ^
+--header "Content-Type: application/json" ^
+--data-raw "[{\"name\": \"Szupr\u00E9m - nagy m\u00E9ret\",\"price\": 4490},{\"name\": \"Texas - nagy m\u00E9ret\",\"price\": 4490},{\"name\": \"Margarita - nagy m\u00E9ret\",\"price\": 3790}]"
+				</pre>
+										</div>
+									</div>
+<span></span>
+
 								</li>
 							</ul>
 						</div>
