@@ -6,10 +6,10 @@ The goal of the application to find the best combinations (up to 5) of pizza ord
 
 The backtracking algorithm runs _until_:
   - find 5 perfect combination (no remaining amount of money)
-  - iterates over all valid combinations (less than **1.000.000** combinations examined)
-  - the number of examined combinations reaches **1.000.000**
+  - iterates over all valid combinations (less than **1,000,000** combinations examined)
+  - the number of examined combinations reaches **1,000,000**
 
-The amount of money for the pizza ordering is between **1 - 100.000** HUF
+The amount of money for the pizza ordering is between **1 - 1,000,000** HUF
 
 To build the applications the followings are needed:
 - java 11 (or higher)
