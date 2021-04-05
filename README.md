@@ -20,3 +20,8 @@ To run the web application (accessible at http://localhost:8080) :
    mvn spring-boot:run
 ```
 
+To deploy on Azure
+(change azure-webapp-maven-plugin settings to avoid collision)
+```
+   mvn package azure-webapp:deploy
+```
