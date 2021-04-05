@@ -53,19 +53,30 @@ public class Backtracking {
 		if (candidateList.isComplete() || caseNumber >= MAXIMUM_NUMBER_OF_CASES_TO_CHECK) {
 			return;
 		}
+		
+		updateCaseNumber();
+		
+		if (isGoodCandidate(candidate)) {
+			
+			candidateList.add(candidate);
+
+			processNextCases(candidate);
+		}
+	}
+
+	private void processNextCases(Candidate candidate) {
+		int nextPizzaIndex = getTheIndexOfTheNextPizza(candidate);
+		if (nextPizzaIndex < availablePizzaList.size()) {
+			for (int i = 0; i <= maxPizzaNumList.get(nextPizzaIndex); i++) {
+				backtrack(candidate.createNewCandidateByAddingPizza(i));
+			}
+		}
+	}
+
+	private void updateCaseNumber() {
 		caseNumber++;
 		if (caseNumber % LOG_CASE_NUMBER_FREQUENCY == 0) {
 			log.info("case number: {}", caseNumber);
-		}
-		if (isValidState(candidate)) {
-			candidateList.add(candidate);
-			// process next states
-			int nextPizzaIndex = getTheIndexOfTheNextPizza(candidate);
-			if (nextPizzaIndex < availablePizzaList.size()) {
-				for (int i = 0; i <= maxPizzaNumList.get(nextPizzaIndex); i++) {
-					backtrack(candidate.createNewCandidateByAddingPizza(i));
-				}
-			}
 		}
 	}
 
@@ -115,8 +126,15 @@ public class Backtracking {
 	/**
 	 * Returns true if the price of the state is valid.
 	 */
-	private boolean isValidState(Candidate candidate) {
-		return candidate.getPrice() <= this.price;
+	private boolean isGoodCandidate(Candidate candidate) {
+
+		int candidatePriceDifference = this.price - candidate.getPrice();
+
+		if (candidateList.isEmpty() || (candidatePriceDifference >= 0
+				&& candidatePriceDifference <= candidateList.getMaxPriceDifference())) {
+			return true;
+		}
+		return false;
 	}
 
 }

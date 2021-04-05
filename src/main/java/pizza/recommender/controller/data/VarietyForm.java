@@ -23,6 +23,6 @@ import lombok.ToString;
 public class VarietyForm {
 	@NotNull
 	@Min(0)
-	@Max(100_000)
+	@Max(1_000_000)
 	private Integer price;
 }

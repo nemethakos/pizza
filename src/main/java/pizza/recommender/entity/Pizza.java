@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -36,6 +37,7 @@ public class Pizza {
 
 	@NotNull(message = "Price is mandatory")
 	@Min(0)
+	@Max(10_000)
 	private Integer price;
 
 	public Pizza(String name, int price) {

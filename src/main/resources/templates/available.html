@@ -34,7 +34,7 @@
 							<tbody>
 								<tr th:each="pizza : ${pizzas}">
 									<td th:text="${pizza.name}"></td>
-									<td><span th:text="${pizza.price}"></span> <span>HUF</span></td>
+									<td><span th:text="${#numbers.formatDecimal(pizza.price,0,'COMMA',0,'POINT')}"></span> <span>HUF</span></td>
 								</tr>
 							</tbody>
 						</table>

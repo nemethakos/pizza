@@ -19,12 +19,13 @@
 
 	<div th:switch="${candidateList.valid}" class="container my-5">
 		<h2 th:case="false">
-			No Varieties for <span th:text="${price}"></span> <span>HUF</span>!
+			No Varieties for <span
+				th:text="${#numbers.formatDecimal(price,0,'COMMA',0,'POINT')}"></span> <span>HUF</span>!
 		</h2>
 		<div th:case="*" class="">
 			<h2 class="mb-5">
-				Pizza varieties for <span th:remove="tag" th:text="${price}"></span>
-				<span>HUF</span>
+				Pizza varieties for <span th:remove="tag"
+					th:text="${#numbers.formatDecimal(price,0,'COMMA',0,'POINT')}"></span> <span>HUF</span>
 			</h2>
 			<div class="col">
 				<table class="table table-striped">
@@ -37,13 +38,15 @@
 					</thead>
 					<tbody>
 						<tr th:each="candidate: ${candidateList.listOfVarieties}">
-							<td><span th:remove="tag" th:text="${candidate.price}"></span><span>&nbsp;HUF</span>
+							<td><span th:remove="tag"
+								th:text="${#numbers.formatDecimal(candidate.price,0,'COMMA',0,'POINT')}"></span><span>&nbsp;HUF</span>
 							</td>
 							<td><span th:each="pizzaData: ${candidate.pizzaData}"
 								class="badge mr-3 badge-outline-info"> <span
-									th:remove="tag" th:text="${pizzaData.amount}"></span><span>x</span>
+									th:remove="tag" th:text="${#numbers.formatDecimal(pizzaData.amount,0,'COMMA',0,'POINT')}"></span><span>x</span>
 									<span th:remove="tag" th:text="${pizzaData.pizza.name}"></span>
-									<span th:remove="tag" th:text="${pizzaData.pizza.price}"></span>
+									<span th:remove="tag"
+									th:text="${#numbers.formatDecimal(pizzaData.pizza.price,0,'COMMA',0,'POINT')}"></span>
 									<span>HUF</span>
 							</span></td>
 						</tr>
@@ -51,7 +54,7 @@
 				</table>
 			</div>
 			<small> <span>Cases examined: </span><span
-				th:text="${#numbers.formatInteger(candidateList.casesExamined,3,'POINT')}"></span>
+				th:text="${#numbers.formatDecimal(candidateList.casesExamined,0,'COMMA',0,'POINT')}"></span>
 				<span>( </span> <span
 				th:text="${candidateList.getBacktrackDuration.toSecondsPart()}"></span><span>
 					seconds</span> <span

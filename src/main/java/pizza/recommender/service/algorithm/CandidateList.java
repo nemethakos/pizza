@@ -7,9 +7,11 @@ import java.util.List;
 
 import lombok.Getter;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 
 @Getter
 @ToString
+@Log4j2
 public class CandidateList {
 
 	private List<Candidate> candidates;
@@ -27,9 +29,13 @@ public class CandidateList {
 		this.candidates = new ArrayList<>(size + 1);
 		this.maximumNumberOfCandidates = size;
 		this.targetPrice = targetPrice;
-		this.maxPriceDifference = Integer.MAX_VALUE;
+		this.maxPriceDifference = targetPrice;
 		this.casesExamined = 0;
 		this.backtrackTimeNano = 0;
+	}
+
+	public boolean isEmpty() {
+		return this.candidates.size() == 0;
 	}
 
 	public Duration getBacktrackDuration() {
