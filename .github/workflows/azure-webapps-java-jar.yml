@@ -42,9 +42,6 @@ jobs:
           distribution: 'temurin'
           java-version: ${{ env.JAVA_VERSION }}
           cache: 'maven'
-          
-
-# - run: java -cp java HelloWorldApp
 
       - name: Build with Maven
         run: mvn clean install
