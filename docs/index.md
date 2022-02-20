@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+## pizza
 
-You can use the [editor on GitHub](https://github.com/nemethakos/pizza/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+The goal of the application to find the best combinations (up to 5) of pizza order for a specified amount of money, where each pizza can be ordered multiple times and the prices of pizzas can be the same. It uses _backtracking_ to discover all valid combinations.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+![alt text](https://github.com/nemethakos/pizza/raw/main/media/varieties.PNG)
 
-### Markdown
+The backtracking algorithm runs _until_:
+  - find 5 perfect combination (no remaining amount of money)
+  - iterates over all valid combinations (less than **1,000,000** combinations examined)
+  - the number of examined combinations reaches **1,000,000**
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The amount of money for the pizza ordering is between **1 - 1,000,000** HUF
 
-```markdown
-Syntax highlighted code block
+To build the applications the followings are needed:
+- java 11 (or higher)
+- maven 3.6 (or higher)
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+To run the web application (accessible at http://localhost:8080) :
+```
+   mvn spring-boot:run
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/nemethakos/pizza/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+To deploy on Azure
+(change azure-webapp-maven-plugin settings to avoid collision)
+```
+   mvn package azure-webapp:deploy
+```
